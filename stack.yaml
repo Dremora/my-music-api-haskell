@@ -1,0 +1,10 @@
+flags: {}
+extra-package-dbs: []
+packages:
+- '.'
+- location:
+    git: https://github.com/scotty-web/scotty
+    commit: 1347b9596c7e7be167e2a6e978bda7ebf4cea5be
+extra-deps:
+- CouchDB-1.2.2
+resolver: lts-4.0
