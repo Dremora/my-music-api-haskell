@@ -1,7 +1,7 @@
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE UndecidableInstances #-}
 
-module Data.JSON.Convert () where
+module Data.Aeson.Compatibility () where
 
 import Data.Aeson (Value(Array, Null, Bool, Number, String, Object),
   ToJSON, FromJSON, toJSON, parseJSON, fromJSON)
@@ -55,19 +55,6 @@ jsonToJsValue (Object object) =
   & map (\(k, v) -> (T.unpack k, jsonToJsValue v))
   & toJSObject
   & JSObject
-
---
--- instance ToJSON JSValue where
---   toJSON = jsValueToJSON
---
---
--- instance FromJSON JSValue where
---   parseJSON = return . jsonToJsValue
---
---
--- instance JSON Value where
---   readJSON = TextJSON.Ok . jsValueToJSON
---   showJSON = jsonToJsValue
 
 
 convertResult :: Aeson.Result a -> TextJSON.Result a

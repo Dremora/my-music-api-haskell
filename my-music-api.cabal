@@ -28,7 +28,7 @@ library
   exposed-modules:     MyMusic.Album
                      , MyMusic.Records
                      , MyMusic.Env
-  other-modules:       Data.JSON.Convert
+  other-modules:       Data.Aeson.Compatibility
   default-language:    Haskell2010
 
 executable my-music-api-exe

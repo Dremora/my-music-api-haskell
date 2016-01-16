@@ -16,7 +16,7 @@ import Database.CouchDB (getDoc, getAndUpdateDoc, newDoc, doc, runCouchDBURI, db
   CouchMonad, Rev, Doc)
 import Control.Monad (void)
 import Data.Aeson.Types (fromJSON, toJSON, Result(Error, Success))
-import Data.JSON.Convert
+import Data.Aeson.Compatibility
 import Data.Maybe (catMaybes)
 import Data.Text (Text, pack, unpack)
 import Database.Bloodhound.Client (searchByIndex, mkSearch, withBH,
