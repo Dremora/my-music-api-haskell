@@ -1,10 +1,10 @@
 name:                my-music-api
 version:             0.1.0.0
-license:             BSD3
+license:             MIT
 license-file:        LICENSE
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2010 Author Here
+author:              Kirill Korolyov
+maintainer:          kirill.korolyov@gmail.com
+copyright:           2016 Kirill Korolyov
 category:            Web
 build-type:          Simple
 -- extra-source-files:
@@ -51,4 +51,4 @@ executable my-music-api-exe
 
 source-repository head
   type:     git
-  location: https://github.com/Dremora/my-music-api
+  location: https://github.com/Dremora/my-music-api-haskell
