@@ -12,7 +12,7 @@ import Data.Monoid (mconcat)
 import Data.Text.Lazy (toStrict)
 import Data.Text.Lazy.IO (putStrLn)
 import GHC.Generics (Generic)
-import Network.HTTP.Types.Status (status201, status500, status400)
+import Network.HTTP.Types.Status (status201, status500, status400, status401)
 import Network.Wai.Middleware.RequestLogger
 import Prelude hiding (putStrLn)
 import Web.Scotty (ScottyM, ActionM, scotty, scottyOpts, param, raise, json,
@@ -21,6 +21,7 @@ import Web.Scotty (ScottyM, ActionM, scotty, scottyOpts, param, raise, json,
 
 
 import MyMusic.Album (getAlbum, createAlbum, updateAlbum, searchAlbums)
+import MyMusic.Auth (authenticate)
 import MyMusic.Records (Album)
 import MyMusic.Env (getPort)
 
@@ -41,6 +42,17 @@ app = do
     liftAndCatchIO $ putStrLn e
     status status500
     json $ object ["error" .= String "Something went wrong"]
+
+  put "/session" $ do
+    code <- param "code" `rescue` invalidPayload
+    authToken <- liftAndCatchIO $ authenticate code
+    case authToken of
+      Right token -> do
+        status status201
+        json  $ object ["is_authenticated" .= toJSON True]
+      Left _ -> do
+        status status401
+        json  $ object ["is_authenticated" .= toJSON False]
 
   get "/albums" $ do
     query <- param "query" `rescue` (\_ -> next)

@@ -15,8 +15,11 @@ library
   build-depends:       base >= 4.7 && < 5
                      , aeson
                      , bloodhound
+                     , bytestring
                      , CouchDB
+                     , hoauth2
                      , http-client
+                     , http-client-tls
                      , json
                      , network-uri
                      , scotty
@@ -26,8 +29,9 @@ library
                      , unordered-containers
                      , vector
   exposed-modules:     MyMusic.Album
-                     , MyMusic.Records
+                     , MyMusic.Auth
                      , MyMusic.Env
+                     , MyMusic.Records
   other-modules:       Data.Aeson.Compatibility
   default-language:    Haskell2010
 
@@ -38,12 +42,10 @@ executable my-music-api-exe
   build-depends:       base
                      , my-music-api
                      , aeson
-                     , CouchDB
                      , http-types
                      , json
                      , network-uri
                      , scotty
-                     , template-haskell
                      , text
                      , transformers
                      , wai-extra
